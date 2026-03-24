@@ -1,35 +1,44 @@
 "use client";
-import React from "react";
+import Image from "next/image";
+import { useState } from "react";
 
-function HomePage({ brandName }) {
+export default function Homepage() {
+  const [localImage, setLocalImage] = useState<string | null>(null);
+  const [urlImage, setUrlImage] = useState<string>("");
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setLocalImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <div style={{
-      backgroundImage: "url('/baku.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      minHeight: "100vh",
-      color: "white"
-    }}>
-      <header style={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
-        <h2>{brandName}</h2>
-        <nav>
-          <a href="#">Ev</a> | <a href="#">Avtomobillər</a> | <a href="#">Xidmətlərimiz</a> | <a href="#">Əlaqə</a> | <a href="#">Bloq</a>
-        </nav>
-        <div>
-          <select>
-            <option value="az">AZ</option>
-            <option value="en">EN</option>
-            <option value="ru">RU</option>
-          </select>
-        </div>
-      </header>
+    <main>
+      <h1>Avtomobil Parkı</h1>
 
-      <main style={{ textAlign: "center", marginTop: "100px" }}>
-        <h1>Bakıda ən rahat avtomobil kirayəsi</h1>
-        <button style={{ marginTop: "20px" }}>WhatsApp ilə sifariş</button>
-      </main>
-    </div>
+      {/* URL ilə şəkil */}
+      <input
+        type="text"
+        placeholder="Şəkil URL"
+        value={urlImage}
+        onChange={(e) => setUrlImage(e.target.value)}
+      />
+
+      {/* Local upload */}
+      <input type="file" accept="image/*" onChange={handleFileUpload} />
+
+      {/* Şəkil göstərmə */}
+      {urlImage && (
+        <Image src={urlImage} alt="URL şəkil" width={400} height={250} />
+      )}
+      {localImage && (
+        <img src={localImage} alt="Local şəkil" width={400} height={250} />
+      )}
+    </main>
   );
 }
-
-export default HomePage;

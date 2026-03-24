@@ -1,10 +1,11 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  output: 'export',   // statik export üçün
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',  // Static HTML export üçün
+  distDir: 'dist',   // Vercel üçün 'dist' daha yaxşıdır, 'out' yerinə
   images: {
-    unoptimized: true // şəkillərin düzgün işləməsi üçün
-  }
-};
+    unoptimized: true,  // Static export üçün şəkilləri optimallaşdırma
+  },
+  trailingSlash: true,  // URL-lərin sonunda / olması (SEO üçün yaxşı)
+}
 
-export default nextConfig;
+module.exports = nextConfig
