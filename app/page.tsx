@@ -1,6 +1,6 @@
 // app/page.tsx
-import CaspianRentacar from '../components/HomePage';   // ← Bu yolu öz fayl adına görə dəyişdir
+import HomePage from '@/components/HomePage';
 
 export default function Page() {
-  return <CaspianRentacar />;
+  return <HomePage brandName="Caspian Rent a Car" />;
 }
