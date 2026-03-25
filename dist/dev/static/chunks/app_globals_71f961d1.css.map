@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Lenovo/rentacar/app/globals.css"],"sourcesContent":["/* globals.css */\n\nbody, p, a, input, button {\n  font-family: 'Roboto', sans-serif;\n}\n\nh1, h2, h3 {\n  font-family: 'Montserrat', sans-serif;\n}\n"],"names":[],"mappings":"AAEA;;;;AAIA"}}]
+}
